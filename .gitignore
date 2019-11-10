@@ -1,0 +1,5 @@
+.next
+.serverless
+.vscode
+serverless.yml
+node_modules/
