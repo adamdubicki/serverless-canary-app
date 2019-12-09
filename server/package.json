@@ -1,0 +1,40 @@
+{
+  "name": "canary-monitor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "deploy:stage": "sls deploy --stage stage",
+    "deploy:prod": "sls deploy --stage prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamdubicki/serverless-canary-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adamdubicki/serverless-canary-app/issues"
+  },
+  "homepage": "https://github.com/adamdubicki/serverless-canary-app#readme",
+  "dependencies": {
+    "@slack/client": "^5.0.0",
+    "aws-sdk": "2.436.0",
+    "axios": "0.19.0",
+    "google-spreadsheet": "^2.0.3",
+    "nodemon": "1.18.10"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "8.10.1",
+    "@types/aws-sdk": "2.7.0",
+    "@types/node": "8.0.57",
+    "serverless-offline": "5.12.1",
+    "serverless-offline-scheduler": "0.3.7",
+    "serverless-webpack": "5.1.1",
+    "source-map-support": "0.5.0",
+    "ts-loader": "4.2.0",
+    "typescript": "3.7.3",
+    "webpack": "4.5.0"
+  }
+}

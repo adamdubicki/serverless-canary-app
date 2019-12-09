@@ -1,5 +1,6 @@
 .next
 .serverless
 .vscode
+dist/
 serverless.yml
 node_modules/

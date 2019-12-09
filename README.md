@@ -1,1 +1,1 @@
-# serverless-canary-app
+# Canary Monitor
