@@ -1,6 +1,9 @@
 .next
 .serverless
 .vscode
+.webpack
+.DS_STORE
+.dynamodb
 dist/
 serverless.yml
 node_modules/

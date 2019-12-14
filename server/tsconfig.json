@@ -5,6 +5,8 @@
     "lib": [
       "esnext"
     ],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "moduleResolution": "node"
   },
   "exclude": [
