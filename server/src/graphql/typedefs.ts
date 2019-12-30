@@ -2,7 +2,7 @@ import {
   QueryTypeDef,
   ApplicationTypeDef,
   EnvironmentTypeDef
-} from './schema';
+} from '../graphql/schema';
 
 /**
  * Combine all type definitions into single string

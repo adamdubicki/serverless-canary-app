@@ -1,7 +1,7 @@
-import { ElasticBeanstalk } from 'aws-sdk';
 import { keysToLowerCamelCase } from '../../utils';
+import { ElasticBeanstalkService } from '../../service/elastic-beanstalk.service';
 
-const eb = new ElasticBeanstalk();
+const eb = new ElasticBeanstalkService();
 
 export const QueryTypeDef = `  
   type Query {
@@ -12,22 +12,15 @@ export const QueryTypeDef = `
 `
 
 export const QueryResolvers = {
-  applications: async () => {
-    const result = await eb.describeApplications().promise();
-    return keysToLowerCamelCase(result.Applications)
-  },
+  applications: async () => await eb.getApplications(),
+  environments: async(_parentValue, { applicationName }) => await eb.getEnvironments(applicationName),
   application: async(_parentValue, { applicationName }) => {
-    const result = await eb.describeApplications().promise();
-    const application = result.Applications.find(application => 
-      application.ApplicationName === applicationName
+    const result = await eb.getApplications();
+
+    const application = result.find(application => 
+      application.applicationName === applicationName
     );
-    return keysToLowerCamelCase(application)
+
+    return application;
   },
-  environments: async(_parentValue, { applicationName }) => {
-    const result =  await eb.describeEnvironments({
-        ApplicationName: applicationName 
-      })
-      .promise();
-    return keysToLowerCamelCase(result.Environments);
-  }
 }

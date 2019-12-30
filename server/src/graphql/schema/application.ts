@@ -1,8 +1,6 @@
-import { ElasticBeanstalk } from "aws-sdk";
-import { GraphQLSchema } from './graphql-schema.interface';
-import { keysToLowerCamelCase, StaticImplements } from '../../utils';
+import { ElasticBeanstalkService } from '../../service/elastic-beanstalk.service';
 
-const eb = new ElasticBeanstalk();
+const eb = new ElasticBeanstalkService();
 
 export const ApplicationTypeDef = `
   type Application {
@@ -18,37 +16,5 @@ export const ApplicationTypeDef = `
 `
 
 export const ApplicationResolvers = {
-  environments: async (parentValue) => {
-    const result = await eb.describeEnvironments({
-      ApplicationName: '' 
-    })
-    .promise();
-    return keysToLowerCamelCase(result.Environments);
-  } 
-}
-
-@StaticImplements<GraphQLSchema>()
-export class Application {
-  static typedef = `
-    type Application {
-      applicationName: String
-      applicationArn: String
-      description: String
-      dateCreated: String
-      dateUpdated: String
-      versions: [String]
-      configurationTemplates: [String]
-      environments: [Environment]
-    }
-  `;
-
-  static resolvers = {
-    environments: async (parentValue) => {
-      const result = await eb.describeEnvironments({
-        ApplicationName: parentValue.applicationName 
-      })
-      .promise();
-      return keysToLowerCamelCase(result.Environments);
-    } 
-  }
+  environments: async (parentValue) => await eb.getEnvironments(parentValue.applicationName)
 }

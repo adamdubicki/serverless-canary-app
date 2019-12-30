@@ -1,6 +1,6 @@
 import { ApolloServer, makeExecutableSchema } from 'apollo-server-lambda';
-import { typeDefs } from './typedefs';
-import { resolvers } from './resolvers'
+import { typeDefs } from '../graphql/typedefs';
+import { resolvers } from '../graphql/resolvers'
 
 const server = new ApolloServer({
   typeDefs,

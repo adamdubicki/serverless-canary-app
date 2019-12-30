@@ -15,6 +15,10 @@ module.exports = {
   devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx', '*', '.mjs', '.js', '.vue', '.json', '.gql', '.graphql'],
+    modules: [
+      path.resolve('./node_modules'),
+      path.resolve('./src')
+    ],
   },
   output: {
     libraryTarget: 'commonjs',
